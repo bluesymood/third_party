@@ -1,0 +1,56 @@
+# Copyright (c) Huawei Technologies Co., Ltd. 2021-2021. All rights reserved.
+
+import("//ark/runtime_core/ark_config.gni")
+import("//build/config/ohos/rules.gni")
+import("//build/ohos.gni")
+
+config("zydis_public_config") {
+  include_dirs = [
+    "$ark_third_party_root/zydis/include",
+    "$ark_third_party_root/zydis/zycore/include",
+    "$ark_third_party_root/zydis/src",
+  ]
+}
+
+ohos_static_library("libZydis") {
+  sources = [
+    "include/Zydis/Decoder.h",
+    "include/Zydis/DecoderTypes.h",
+    "include/Zydis/Formatter.h",
+    "include/Zydis/FormatterBuffer.h",
+    "include/Zydis/Internal/DecoderData.h",
+    "include/Zydis/Internal/FormatterATT.h",
+    "include/Zydis/Internal/FormatterBase.h",
+    "include/Zydis/Internal/FormatterIntel.h",
+    "include/Zydis/Internal/SharedData.h",
+    "include/Zydis/Internal/String.h",
+    "include/Zydis/MetaInfo.h",
+    "include/Zydis/Mnemonic.h",
+    "include/Zydis/Register.h",
+    "include/Zydis/SharedTypes.h",
+    "include/Zydis/ShortString.h",
+    "include/Zydis/Status.h",
+    "include/Zydis/Utils.h",
+    "include/Zydis/Zydis.h",
+    "src/Decoder.c",
+    "src/DecoderData.c",
+    "src/Formatter.c",
+    "src/FormatterATT.c",
+    "src/FormatterBase.c",
+    "src/FormatterBuffer.c",
+    "src/FormatterIntel.c",
+    "src/MetaInfo.c",
+    "src/Mnemonic.c",
+    "src/Register.c",
+    "src/SharedData.c",
+    "src/String.c",
+    "src/Utils.c",
+    "src/Zydis.c",
+  ]
+
+  configs = [ ":zydis_public_config" ]
+  if (!ark_standalone_build) {
+    remove_configs = [ "//build/config/compiler:chromium_code" ]
+    configs += [ "//build/config/compiler:no_chromium_code" ]
+  }
+}

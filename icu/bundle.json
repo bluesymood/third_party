@@ -1,0 +1,34 @@
+{
+    "name": "@ohos/icu",
+    "description": "ICU is a mature, widely used set of portable C/C++ and Java libraries for Unicode support, software internationalization and globalization (i18n/g11n). The packages are mirrors of the main website.",
+    "version": "3.1",
+    "license": "ICU,BSD 3-Clause",
+    "publishAs": "code-segment",
+    "segment": {
+        "destPath": "third_party/icu"
+    },
+    "dirs": [],
+    "scripts": {},
+    "component": {
+        "name": "icu",
+        "subsystem": "thirdparty",
+        "syscap": [],
+        "features": [],
+        "adapted_system_type": [ "standard" ],
+        "rom": "",
+        "ram": "",
+        "deps": {
+            "components": [],
+            "third_party": []
+        },
+        "build": {
+            "sub_component": [
+                "//third_party/icu/icu4c:ohos_icudat",
+                "//third_party/icu/icu4c:shared_icuuc",
+                "//third_party/icu/icu4c:shared_icui18n"
+            ],
+            "inner_kits": [],
+            "test": []
+        }
+    }
+}
